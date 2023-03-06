@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ConsoleApp1": {
+      "commandName": "Project",
+      "commandLineArgs": "salary\r\ntax"
+    },
+    "ConsoleApp/ first-app": {
+      "commandName": "Project",
+      "commandLineArgs": "30000\r\n30"
+    }
+  }
+}
