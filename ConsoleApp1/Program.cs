@@ -38,19 +38,25 @@ class Program
         Console.WriteLine("Super alors tu as pour taxe : " + tax);
 
         Console.WriteLine("\nVoici ton salaire net par mois : " + calcul(salary, tax));
+        
+        switch (salary)
+        {
+            case >= 50000:
+                Console.WriteLine("\nTu devrais faire des dons pour réduire des impots #rats");
+                break;
 
-        if (salary >= 50000)
-        {
-            Console.WriteLine("\nTu devrais faire des dons pour réduire des impots #rats");
+            case <= 1500 * 12:
+                Console.WriteLine("\nLogique tu es un alternant");
+                break;
+
+            case > 30000 :
+                if (salary > 40000){
+                    Console.WriteLine("\nVient au CESI pour un bac+5 en dev ;)");
+                }
+                break;
         }
-        if (salary <= 1500*12)
-        {
-            Console.WriteLine("\nLogique tu es un alternant");
-        }
-        if (salary > 30000 && salary < 40000)
-        {
-            Console.WriteLine("\nVient au CESI pour un bac+5 en dev ;)");
-        }
+
+
         Console.ReadLine();
     }
     static int calcul(int salary, int tax)
