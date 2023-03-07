@@ -71,7 +71,7 @@ class Program
         //AUTRE EXO 
 
 
-    Console.WriteLine("\n\n\nHello, je vais être capable de te donner ton salaire net mensuel \n");
+        Console.WriteLine("\n\n\nHello, je vais être capable de te donner ton salaire net mensuel \n");
         Console.WriteLine("Entre ton salaire brut annuel : ");
 
         int salary;
