@@ -15,7 +15,63 @@ class Program
 
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, je vais être capable de te doner ton salaire net annuel \n");
+        Console.OutputEncoding = Encoding.UTF8;
+
+        // Tableau des mois
+        string[] months = new string[13]
+        {
+        "", // Indice 0 inutilisé
+        "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+        "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+        };
+
+        // Saisie du salaire mensuel
+        Console.WriteLine("Entrez votre salaire mensuel : ");
+        int salaryMensuel = 0;
+        try
+        {
+            salaryMensuel = int.Parse(Console.ReadLine());
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("\nLa valeur que vous avez entrée n'est pas un nombre valide !");
+            return;
+        }
+        catch (DivideByZeroException)
+        {
+            Console.WriteLine("\nLa division par 0 n'est pas possible !");
+            return;
+        }
+
+        // Calcul du salaire pour chaque mois
+        foreach (string mois in months)
+        {
+            double salaireMensuelMois = salaryMensuel;
+            switch (mois)
+            {
+                case "Août":
+                    salaireMensuelMois = 0;
+                    break;
+                case "Décembre":
+                    try
+                    {
+                        Console.WriteLine("Entrez le pourcentage de la prime de Noël : ");
+                        int pourcentagePrimeNoel = int.Parse(Console.ReadLine());
+                        salaireMensuelMois *= (1 + (pourcentagePrimeNoel / 100.0));
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("La valeur que vous avez entrée n'est pas un nombre valide !");
+                    }
+                    break;
+            }
+            Console.WriteLine($"Salaire pour {mois} : {salaireMensuelMois}");
+        }
+
+        //AUTRE EXO 
+
+
+    Console.WriteLine("\n\n\nHello, je vais être capable de te donner ton salaire net mensuel \n");
         Console.WriteLine("Entre ton salaire brut annuel : ");
 
         int salary;
@@ -50,17 +106,19 @@ class Program
                 break;
 
             case > 30000 :
-                if (salary > 40000){
+                if (salary <
+                    40000){
                     Console.WriteLine("\nVient au CESI pour un bac+5 en dev ;)");
                 }
                 break;
         }
 
 
+
         Console.ReadLine();
     }
-    static int calcul(int salary, int tax)
+    static int calcul(int sal, int tax)
     {
-        return (salary * (1 - tax / 100)) / 12;
+        return (sal * (1 - tax / 100)) / 12;
     }
 }
