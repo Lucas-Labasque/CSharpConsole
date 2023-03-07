@@ -1,5 +1,6 @@
 ﻿using System.Security.Principal;
 using System.Text;
+using ConsoleApp1.Modele;
 
 class Program
 {
@@ -13,8 +14,35 @@ class Program
     //    Console.ReadLine();
     //}
 
+
+
+
     static void Main(string[] args)
     {
+        Users user = new Users();
+        Console.WriteLine("Quel est votre ID : ");
+        user.ID = int.Parse(Console.ReadLine());
+        Console.WriteLine("Quel est votre Prénom : ");
+        user.FirstName = Console.ReadLine();
+        Console.WriteLine("Quel est votre Nom : ");
+        user.LastName = Console.ReadLine();
+        Console.WriteLine("Quel est votre Âge : ");
+        user.Old = int.Parse(Console.ReadLine());
+        Console.WriteLine("Quel est votre Salaire annuel Brut : ");
+        user.Salary = int.Parse(Console.ReadLine().Replace("€", ""));
+        Console.WriteLine("Quel est votre Taux d'imposition : ");
+        user.Tax = int.Parse(Console.ReadLine().Replace("%", "")); Console.WriteLine("\nID : " + user.ID);
+
+
+
+        Console.WriteLine("Prénom : " + user.FirstName);
+        Console.WriteLine("Nom : " + user.LastName);
+        Console.WriteLine("Âge : " + user.Old);
+        Console.WriteLine("Salaire Brut : " + user.Salary + "€");
+        Console.WriteLine("Taux d'imposition : " + user.Tax + "%");
+        Console.WriteLine("Salaire Net : " + user.CalculateSalary() + "€");
+
+
         Console.OutputEncoding = Encoding.UTF8;
 
         // Tableau des mois
@@ -65,7 +93,7 @@ class Program
                     }
                     break;
             }
-            Console.WriteLine($"Salaire pour {mois} : {salaireMensuelMois}");
+            Console.WriteLine($"Salaire pour {mois} : {salaireMensuelMois} €");
         }
 
         //AUTRE EXO 
@@ -80,20 +108,22 @@ class Program
             Console.WriteLine("Erreur : Entrez une valeur valide en entier.");
         }
 
-        Console.WriteLine("Super alors si ton salaire brut annuel est égal à : " + salary);
+        Console.WriteLine("Super alors si ton salaire brut annuel est égal à : " + salary + "€");
 
-         
+
         Console.WriteLine("\nEntre ton taux de taxe : ");
 
         int tax;
-        while (!int.TryParse(Console.ReadLine(),out tax))
+        while (!int.TryParse(Console.ReadLine(), out tax))
         {
             Console.WriteLine("Erreur: Entrez une valeur valide en entier.");
         }
 
-        Console.WriteLine("Super alors tu as pour taxe : " + tax);
+        Console.WriteLine("Super alors tu as pour taxe : " + tax + "%");
 
-        Console.WriteLine("\nVoici ton salaire net par mois : " + calcul(salary, tax));
+        double salaryNetPerMonth = salary / 12;
+
+        Console.WriteLine("\nVoici ton salaire net par mois : " + salaryNetPerMonth + "€");
         
         switch (salary)
         {
@@ -114,11 +144,7 @@ class Program
         }
 
 
-
         Console.ReadLine();
     }
-    static int calcul(int sal, int tax)
-    {
-        return (sal * (1 - tax / 100)) / 12;
-    }
+
 }
